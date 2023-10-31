@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import Avatar from "@/app/components/Avatar";
 import { format } from "date-fns";
+import AvatarGroup from "@/app/components/AvatarGroup";
 
 interface ConversationBoxProps{
     data:FullCoversationType;
@@ -69,7 +70,11 @@ const ConversationBox:React.FC<ConversationBoxProps> = ({
             className={clsx(`w-full relative flex items-center space-x-3 hover:bg-neutral-100 rounded-lg transition cursor-pointer p-3`,
             selected ? 'bg-neutral-100':'bg-white')}
             >
-                <Avatar user={otherUser}/>
+                {data.isGroup ? (
+                    <AvatarGroup users={data.user} />
+                ) : (
+                    <Avatar user={otherUser}/>
+                )}
                 <div className="min-w-0 flex-1">
                     <div className="focus:outline-none">
                         <div className="flex justify-between items-center mb-1">
